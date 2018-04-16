@@ -4,7 +4,7 @@ title:  "使用Jekyll搭建GitHub Pages博客"
 date:   2018-04-16 14:07:45 +0800
 categories: jekyll update
 ---
-#这是标题
+<h1>这是标题</h1>
 
 这是图片
 ![logo](/images/2018/04/16/logo.jpg "logo")
