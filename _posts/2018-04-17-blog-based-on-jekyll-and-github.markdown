@@ -136,11 +136,30 @@ Configuration file: C:/Programmer/Ruby/Jekyll/jekyllpg/_config.yml
 
 <h1>六、发布到GitHub Pages</h1>
 
-虽然本地运行的有模有样了，但，GitHub上那个还是只有一个`index.html`呢！
+虽然本地运行的有模有样了，但，GitHub上那个仓库还是只有一个`index.html`呢！
 
-在此之前，先设置git客户端，将其与远程GitHub关联并授权。
+在此之前，让我们先设置git客户端，将其与远程GitHub关联并授权。
 
-在本地创建一个目录（文件夹），就叫`GitHubPages`吧！首先进入该目录，将GitHub仓库内容pull下来，包括那个index.html文件
+打开Git Bash，运行
+```
+ssh-keygen -t rsa -C "yourname@xxx.com"
+```
+回车，输入`yes`，再回车，将在`C:\Users\John\.ssh\id_rsa.pub`文件生成ssh密钥，打开该文件，复制所有内容
+
+登录github，打开“Settings”，点击左侧“SSH and GPG keys”菜单，然后点击右侧上方“New SSH key”按钮，“Title”随意输入名称，“Key”处粘贴刚才复制的密钥，注意最后不要留空格或换行，保存配置
+
+打开git bash，输入以下内容验证ssh连接
+```
+ssh -T git@github.com
+```
+第一次需要输入`yes`然后回车才能看到连接成功的信息，以后就不需要了，然后，配置全局的用户名、邮箱信息，作为提交人信息
+```
+git config --global user.name "yangsheefee"
+git config --global user.email "yangsheefee@gmail.com"
+```
+OK，Git客户端配置完成。
+
+在本地创建一个目录（文件夹），就叫`GitHubPages`吧！进入该目录，将GitHub仓库内容pull下来，包括那个index.html文件
 ```
 John@DESKTOP-IIQH3FK MINGW64 /c/Programmer/Ruby/Jekyll/GitHubPages
 $ git init
@@ -158,37 +177,24 @@ Unpacking objects: 100% (56/56), done.
 From github.com:yangsheefee/yangsheefee.github.io
  * branch            master     -> FETCH_HEAD
  * [new branch]      master     -> origin/master
-
 ```
-
-
-
-<h1>更换博客主题</h1>
-
-Jekyll更换主题不算很容易，不是说难，是没有文档说明，让人莫名其妙
-Jekyll可以生成空白主题（就是平铺的那种，啥样式都没）
-
-创建主题
+将本地博客目录，就是成功运行了的那个目录，拷贝过来，执行add、commit与push操作
 ```
-John@DESKTOP-IIQH3FK MINGW64 /c/Programmer/Ruby/Jekyll
-$ jekyll new-theme jekyllui
-             create C:/Programmer/Ruby/Jekyll/jekyllui/assets
-             create C:/Programmer/Ruby/Jekyll/jekyllui/_layouts
-             create C:/Programmer/Ruby/Jekyll/jekyllui/_includes
-             create C:/Programmer/Ruby/Jekyll/jekyllui/_sass
-             create C:/Programmer/Ruby/Jekyll/jekyllui/_layouts/page.html
-             create C:/Programmer/Ruby/Jekyll/jekyllui/_layouts/post.html
-             create C:/Programmer/Ruby/Jekyll/jekyllui/_layouts/default.html
-             create C:/Programmer/Ruby/Jekyll/jekyllui/Gemfile
-             create C:/Programmer/Ruby/Jekyll/jekyllui/jekyllui.gemspec
-             create C:/Programmer/Ruby/Jekyll/jekyllui/README.md
-             create C:/Programmer/Ruby/Jekyll/jekyllui/LICENSE.txt
-         initialize C:/Programmer/Ruby/Jekyll/jekyllui/.git
-             create C:/Programmer/Ruby/Jekyll/jekyllui/.gitignore
-Your new Jekyll theme, jekyllui, is ready for you in C:/Programmer/Ruby/Jekyll/jekyllui!
-For help getting started, read C:/Programmer/Ruby/Jekyll/jekyllui/README.md.
+git add ./*
+git commit -m "comment"
+git push -u origin master
 ```
-想使用这个主题，只要把它拷贝到博客目录，然后安装好插件，就可以在本地运行了
+这样就将本地文件上传到GitHub Pages那个仓库了，访问`username.github.io`域名，就能看到新内容啦！
+
+<h1>七、自定义网站图标</h1>
+
+在`username.github.io`仓库的根目录添加一个名为`favicon.ico`的文件，如果没有ico图标，可以上传一张图片到[比特虫](http://www.bitbug.net/)在线做一个，刷新下页面就能看到图标了！
+
+<h1>八、更换Jekyll主题</h1>
+
+Jekyll更换主题不是特别简单，但也并不是很复杂，只是没有文档说明，让人莫名其妙。
+
+当你看到一个漂亮的Jekyll主题，把它下载到本地，解压，要做的最重要的事是安装这个主题需要的插件，不然本地是运行不了的，把博客的内容就是包含_posts等文件的那个目录的内容拷贝过来，然后进入到这个主题的根目录
 ```
 John@DESKTOP-IIQH3FK MINGW64 /c/Programmer/Ruby/Jekyll/jekyllui (master)
 $ bundle install
@@ -209,17 +215,40 @@ See html-pipeline README.md for more details.
 https://github.com/jch/html-pipeline#dependencies
 -------------------------------------------------
 ```
-这个命令安装的其实是Gemfile文件中指定的gem插件，有时候需要修改该文件
+然后试着运行
+```
+bundle exec jekyll s
+```
+如果没报错，就行了。
+
+另外，Jekyll可以生成空白主题（就是平铺的那种，啥样式都没），可以用来设计一个全新的主题
+```
+John@DESKTOP-IIQH3FK MINGW64 /c/Programmer/Ruby/Jekyll
+$ jekyll new-theme jekyllui
+             create C:/Programmer/Ruby/Jekyll/jekyllui/assets
+             create C:/Programmer/Ruby/Jekyll/jekyllui/_layouts
+             create C:/Programmer/Ruby/Jekyll/jekyllui/_includes
+             create C:/Programmer/Ruby/Jekyll/jekyllui/_sass
+             create C:/Programmer/Ruby/Jekyll/jekyllui/_layouts/page.html
+             create C:/Programmer/Ruby/Jekyll/jekyllui/_layouts/post.html
+             create C:/Programmer/Ruby/Jekyll/jekyllui/_layouts/default.html
+             create C:/Programmer/Ruby/Jekyll/jekyllui/Gemfile
+             create C:/Programmer/Ruby/Jekyll/jekyllui/jekyllui.gemspec
+             create C:/Programmer/Ruby/Jekyll/jekyllui/README.md
+             create C:/Programmer/Ruby/Jekyll/jekyllui/LICENSE.txt
+         initialize C:/Programmer/Ruby/Jekyll/jekyllui/.git
+             create C:/Programmer/Ruby/Jekyll/jekyllui/.gitignore
+Your new Jekyll theme, jekyllui, is ready for you in C:/Programmer/Ruby/Jekyll/jekyllui!
+For help getting started, read C:/Programmer/Ruby/Jekyll/jekyllui/README.md.
+```
+把它拷贝到博客目录，修改Gemfile文件
 ```
 source 'https://rubygems.org'
 gem 'github-pages', group: :jekyll_plugins
 ```
-然后执行`bundle install`就可以本地运行了
-
-<h1>添加站点图标</h1>
-
-只需要在根目录添加一个名为`favicon.ico`的文件
-
-<h1>添加搜索功能</h1>
-
-<h1>添加评论功能</h1>
+然后执行
+```
+bundle install
+bundle exec jekyll s
+```
+就可以本地运行了
