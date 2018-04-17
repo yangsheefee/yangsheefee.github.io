@@ -45,7 +45,7 @@ www | CNAME | username.github.io
 
 <h1>三、Jekyll简介</h1>
 
-[Jekyll官网](https://jekyllrb.com/)有一条非常醒目的介绍
+Jekyll（发音/'dʒiːkəl/，"杰克尔"），它是什么呢？一个静态站点生成器，[Jekyll官网](https://jekyllrb.com/)有一条非常醒目的介绍
 
 >Transform your plain text into static websites and blogs.
 
@@ -54,6 +54,7 @@ www | CNAME | username.github.io
 <h1>四、Jekyll环境</h1>
 
 Jekyll运行在`Ruby`环境，因此首先需要安装`Ruby`，从[Ruby官网](https://rubyinstaller.org/downloads/)下载最新版本的安装包如`rubyinstaller-devkit-2.5.1-1-x64.exe`，双击安装
+
 ![2](/assets/images/2018/04/17/2018-04-17_131210.png)
 
 注意安装目录没有空格，其他默认，到最后一步`ridk install`那里，取消勾选（实际上勾选了也没影响），然后点击`Finish`，这样`Ruby`就安装好了。
@@ -131,7 +132,9 @@ Configuration file: C:/Programmer/Ruby/Jekyll/jekyllpg/_config.yml
   Server running... press ctrl-c to stop.
 ```
 在Generating的过程中，会生成一个_site目录，里面就是真正的网站内容，html、js、css等文件，这就是Jekyll解析的过程，此时，浏览器访问效果如下
+
 ![1](/assets/images/2018/04/17/2018-04-17_133217.png)
+
 这个博客就在本地生成了，有固定的样式、目录等等。
 
 <h1>六、发布到GitHub Pages</h1>
@@ -252,3 +255,5 @@ bundle install
 bundle exec jekyll s
 ```
 就可以本地运行了
+
+如果想自己设计Jekyll主题，可以参考[其他人的Jekyll站点](https://github.com/jekyll/jekyll/wiki/Sites)
