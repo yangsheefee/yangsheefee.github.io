@@ -257,3 +257,12 @@ bundle exec jekyll s
 就可以本地运行了
 
 如果想自己设计Jekyll主题，可以参考[其他人的Jekyll站点](https://github.com/jekyll/jekyll/wiki/Sites)
+
+<h1>附：参考文献</h1>
+
+* [http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html](http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html)
+* [https://github.com/jekyll/jekyll/wiki/Sites](https://github.com/jekyll/jekyll/wiki/Sites)
+* [http://jekyllthemes.org/](http://jekyllthemes.org/)
+* [http://mazhuang.org/categories/](http://mazhuang.org/categories/)
+* [http://tom.preston-werner.com/](http://tom.preston-werner.com/)
+* [http://xianbai.me/learn-md/index.html](http://xianbai.me/learn-md/index.html)
